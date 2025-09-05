@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Ocorrências</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-container, .ocorrencias-container {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .ocorrencia {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .ocorrencia span {
+            display: block;
+            font-weight: bold;
+        }
+        .ocorrencia button {
+            background-color: #ff6347;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Registro de Ocorrências</h1>
+
+    <div class="form-container">
+        <h2>Cadastrar Nova Ocorrência</h2>
+        <form id="ocorrenciaForm">
+            <input type="text" id="cliente" placeholder="Nome do Cliente" required>
+            <input type="date" id="data" required>
+            <input type="text" id="garagem" placeholder="Garagem" required>
+            <input type="text" id="tema" placeholder="Tema da Reclamação" required>
+            <textarea id="descricao" placeholder="Descrição da Reclamação" required></textarea>
+            <label for="solucao">Teve solução?</label>
+            <select id="solucao">
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+            </select>
+            <button type="submit">Adicionar Ocorrência</button>
+        </form>
+    </div>
+
+    <div class="ocorrencias-container">
+        <h2>Ocorrências Registradas</h2>
+        <div id="ocorrenciasList"></div>
+    </div>
+
+    <script>
+        // Função para carregar as ocorrências do localStorage
+        function carregarOcorrencias() {
+            const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+            const ocorrenciasList = document.getElementById('ocorrenciasList');
+            ocorrenciasList.innerHTML = '';
+            ocorrencias.forEach((ocorrencia, index) => {
+                const ocorrenciaDiv = document.createElement('div');
+                ocorrenciaDiv.classList.add('ocorrencia');
+                ocorrenciaDiv.innerHTML = `
+                    <span>Cliente: ${ocorrencia.cliente}</span>
+                    <span>Data: ${ocorrencia.data}</span>
+                    <span>Garagem: ${ocorrencia.garagem}</span>
+                    <span>Tema: ${ocorrencia.tema}</span>
+                    <p>${ocorrencia.descricao}</p>
+                    <span>Solução: ${ocorrencia.solucao}</span>
+                    <button onclick="editarOcorrencia(${index})">Editar</button>
+                    <button onclick="removerOcorrencia(${index})">Remover</button>
+                `;
+                ocorrenciasList.appendChild(ocorrenciaDiv);
+            });
+        }
+
+        // Função para adicionar uma nova ocorrência
+        document.getElementById('ocorrenciaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const cliente = document.getElementById('cliente').value;
+            const data = document.getElementById('data').value;
+            const garagem = document.getElementById('garagem').value;
+            const tema = document.getElementById('tema').value;
+            const descricao = document.getElementById('descricao').value;
+            const solucao = document.getElementById('solucao').value;
+
+            const ocorrencia = {
+                cliente,
+                data,
+                garagem,
+                tema,
+                descricao,
+                solucao
+            };
+
+            const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+            ocorrencias.push(ocorrencia);
+            localStorage.setItem('ocorrencias', JSON.stringify(ocorrencias));
+
+            // Limpar o formulário
+            document.getElementById('ocorrenciaForm').reset();
+
+            carregarOcorrencias();
+        });
+
+        // Função para remover uma ocorrência
+        function removerOcorrencia(index) {
+            const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+            ocorrencias.splice(index, 1);
+            localStorage.setItem('ocorrencias', JSON.stringify(ocorrencias));
+            carregarOcorrencias();
+        }
+
+        // Função para editar uma ocorrência
+        function editarOcorrencia(index) {
+            const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+            const ocorrencia = ocorrencias[index];
+
+            document.getElementById('cliente').value = ocorrencia.cliente;
+            document.getElementById('data').value = ocorrencia.data;
+            document.getElementById('garagem').value = ocorrencia.garagem;
+            document.getElementById('tema').value = ocorrencia.tema;
+            document.getElementById('descricao').value = ocorrencia.descricao;
+            document.getElementById('solucao').value = ocorrencia.solucao;
+
+            removerOcorrencia(index); // Remove a ocorrência antiga antes de editar
+
+        }
+
+        // Carregar as ocorrências na inicialização
+        carregarOcorrencias();
+    </script>
+
+</body>
+</html>
