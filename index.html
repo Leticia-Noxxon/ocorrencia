@@ -31,11 +31,11 @@
     button {
       background-color: #003366;
       color: white;
-      padding: 10px 20px;
+      padding: 6px 12px;
+      font-size: 13px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-right: 10px;
     }
     button:hover {
       background-color: #002244;
@@ -51,7 +51,10 @@
       padding: 10px;
       border-radius: 5px;
       width: 300px;
+      height: 280px;
+      overflow: hidden;
       box-sizing: border-box;
+      position: relative;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
     .ocorrencia span {
@@ -60,10 +63,14 @@
     }
     .button-group {
       display: flex;
-      justify-content: flex-start;
-      gap: 10px;
-      flex-wrap: wrap;
+      justify-content: space-between;
       margin-top: 10px;
+      gap: 5px;
+    }
+    .button-group button {
+      flex: 1;
+      padding: 6px 8px;
+      font-size: 12px;
     }
     .filtros {
       display: flex;
@@ -96,6 +103,25 @@
     #redefinirFiltro:hover {
       text-decoration: underline;
     }
+
+    /* Bolinha de status */
+    .bolinha {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+    .bolinha.verde {
+      background-color: #00ff00;
+      box-shadow: 0 0 8px #00ff00;
+    }
+    .bolinha.vermelha {
+      background-color: #ff0000;
+      box-shadow: 0 0 8px #ff0000;
+    }
   </style>
 </head>
 <body>
@@ -110,7 +136,6 @@
 
       <select id="garagem" required>
         <option value="">Selecione a Garagem</option>
-        <!-- Lista completa de garagens -->
         <option>A2 Transportes</option>
         <option>Alfa Rodobus</option>
         <option>Gato Preto - Portinari</option>
@@ -169,12 +194,10 @@
 
   <div class="ocorrencias-container">
     <h2>Ocorrências Registradas</h2>
-
     <div class="filtros">
       <div class="filtros-left">
         <select id="filtroGaragem" onchange="carregarOcorrencias()">
           <option value="">Garagem</option>
-          <!-- Mesmas opções fixas da garagem -->
           <option>A2 Transportes</option>
           <option>Alfa Rodobus</option>
           <option>Gato Preto - Portinari</option>
@@ -216,9 +239,8 @@
           <option>Falta de Equipamentos</option>
         </select>
       </div>
-      <div id="redefinirFiltro" onclick="resetarFiltros()">Redefinir filtro</div>
+      <span id="redefinirFiltro" onclick="resetarFiltros()">Redefinir Filtro</span>
     </div>
-
     <div id="ocorrenciasList" class="ocorrencias-wrapper"></div>
   </div>
 
@@ -242,7 +264,11 @@
       filtradas.forEach((ocorrencia, index) => {
         const div = document.createElement('div');
         div.classList.add('ocorrencia');
+
+        const corBolinha = ocorrencia.solucao === "Sim" ? "verde" : "vermelha";
+
         div.innerHTML = `
+          <div class="bolinha ${corBolinha}"></div>
           <span>Cliente: ${ocorrencia.cliente}</span>
           <span>Data: ${ocorrencia.data}</span>
           <span>Garagem: ${ocorrencia.garagem}</span>
@@ -277,7 +303,15 @@
       const solucao = document.getElementById('solucao').value;
       const descricaoSolucao = document.getElementById('descricaoSolucao').value;
 
-      const ocorrencia = { cliente, data, garagem, tema, descricao, solucao, descricaoSolucao: solucao === "Sim" ? descricaoSolucao : "" };
+      const ocorrencia = {
+        cliente,
+        data,
+        garagem,
+        tema,
+        descricao,
+        solucao,
+        descricaoSolucao: solucao === "Sim" ? descricaoSolucao : ""
+      };
 
       const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
       ocorrencias.push(ocorrencia);
@@ -320,5 +354,6 @@
 
 </body>
 </html>
+
 
 
