@@ -29,7 +29,7 @@
             border: 1px solid #ccc;
         }
         button {
-            background-color: #4CAF50;
+            background-color: #003366;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -37,7 +37,7 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #002244;
         }
         .ocorrencia {
             background-color: #f9f9f9;
@@ -64,8 +64,53 @@
         <form id="ocorrenciaForm">
             <input type="text" id="cliente" placeholder="Nome do Cliente" required>
             <input type="date" id="data" required>
-            <input type="text" id="garagem" placeholder="Garagem" required>
-            <input type="text" id="tema" placeholder="Tema da Reclamação" required>
+
+            <!-- CAMPO GARAGEM (ALTERADO PARA SELECT) -->
+            <select id="garagem" required>
+                <option value="">Selecione a Garagem</option>
+                <option value="A2 Transportes">A2 Transportes</option>
+                <option value="Alfa Rodobus">Alfa Rodobus</option>
+                <option value="Gato Preto - Portinari">Gato Preto - Portinari</option>
+                <option value="Gato Preto - Mackenzie">Gato Preto - Mackenzie</option>
+                <option value="MobiBrasil Alvarenga">MobiBrasil Alvarenga</option>
+                <option value="MobiBrasil Jabaquara">MobiBrasil Jabaquara</option>
+                <option value="Norte Buss A1">Norte Buss A1</option>
+                <option value="Norte Buss A2">Norte Buss A2</option>
+                <option value="Sambaiba G1">Sambaiba G1</option>
+                <option value="Sambaiba G3">Sambaiba G3</option>
+                <option value="Sambaiba G4">Sambaiba G4</option>
+                <option value="Santa Brigida Mangalot">Santa Brigida Mangalot</option>
+                <option value="Santa Brigida Jaguara">Santa Brigida Jaguara</option>
+                <option value="Trans União D3">Trans União D3</option>
+                <option value="Trans União D7">Trans União D7</option>
+                <option value="UPBus">UPBus</option>
+                <option value="Via Sudeste Cursino">Via Sudeste Cursino</option>
+                <option value="Via Sudeste Sapopemba">Via Sudeste Sapopemba</option>
+                <option value="Viação Grajaú">Viação Grajaú</option>
+                <option value="Viação Metrópole AE Carvalho">Viação Metrópole AE Carvalho</option>
+                <option value="Viação Metrópole Brás">Viação Metrópole Brás</option>
+                <option value="Viação Metrópole Iguatemi">Viação Metrópole Iguatemi</option>
+                <option value="Viação Metrópole Imperador">Viação Metrópole Imperador</option>
+                <option value="Viação Metrópole Itaim">Viação Metrópole Itaim</option>
+                <option value="Viação Metrópole M'Boi Mirim">Viação Metrópole M'Boi Mirim</option>
+                <option value="Metrópole Pinedo">Metrópole Pinedo</option>
+            </select>
+
+            <!-- CAMPO TEMA (ALTERADO PARA SELECT) -->
+            <select id="tema" required>
+                <option value="">Selecione o Tema</option>
+                <option value="Telemetria">Telemetria</option>
+                <option value="Software">Software</option>
+                <option value="Integração com validador">Integração com validador</option>
+                <option value="TP/TS">TP/TS</option>
+                <option value="Perca de partida">Perca de partida</option>
+                <option value="Nobreak">Nobreak</option>
+                <option value="CFTV">CFTV</option>
+                <option value="UCP NX6000">UCP NX6000</option>
+                <option value="TDM NX6010">TDM NX6010</option>
+                <option value="Falta de Equipamentos">Falta de Equipamentos</option>
+            </select>
+
             <textarea id="descricao" placeholder="Descrição da Reclamação" required></textarea>
             <label for="solucao">Teve solução?</label>
             <select id="solucao">
@@ -107,7 +152,7 @@
         // Função para adicionar uma nova ocorrência
         document.getElementById('ocorrenciaForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const cliente = document.getElementById('cliente').value;
             const data = document.getElementById('data').value;
             const garagem = document.getElementById('garagem').value;
@@ -155,7 +200,6 @@
             document.getElementById('solucao').value = ocorrencia.solucao;
 
             removerOcorrencia(index); // Remove a ocorrência antiga antes de editar
-
         }
 
         // Carregar as ocorrências na inicialização
@@ -164,3 +208,4 @@
 
 </body>
 </html>
+
