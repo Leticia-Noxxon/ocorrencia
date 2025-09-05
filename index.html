@@ -1,211 +1,289 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Ocorrências</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f9;
-        }
-        h1 {
-            text-align: center;
-        }
-        .form-container, .ocorrencias-container {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #003366;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #002244;
-        }
-        .ocorrencia {
-            background-color: #f9f9f9;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .ocorrencia span {
-            display: block;
-            font-weight: bold;
-        }
-        .ocorrencia button {
-            background-color: #ff6347;
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Ocorrências</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .form-container, .ocorrencias-container {
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #003366;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #002244;
+    }
+    .ocorrencias-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: flex-start;
+    }
+    .ocorrencia {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      width: 300px;
+      box-sizing: border-box;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    .ocorrencia span {
+      display: block;
+      font-weight: bold;
+    }
+    .button-group {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .filtros {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+  </style>
 </head>
 <body>
 
-    <h1>Registro de Ocorrências</h1>
+  <h1>Registro de Ocorrências</h1>
 
-    <div class="form-container">
-        <h2>Cadastrar Nova Ocorrência</h2>
-        <form id="ocorrenciaForm">
-            <input type="text" id="cliente" placeholder="Nome do Cliente" required>
-            <input type="date" id="data" required>
+  <div class="form-container">
+    <h2>Cadastrar Nova Ocorrência</h2>
+    <form id="ocorrenciaForm">
+      <input type="text" id="cliente" placeholder="Nome do Cliente" required />
+      <input type="date" id="data" required />
 
-            <!-- CAMPO GARAGEM (ALTERADO PARA SELECT) -->
-            <select id="garagem" required>
-                <option value="">Selecione a Garagem</option>
-                <option value="A2 Transportes">A2 Transportes</option>
-                <option value="Alfa Rodobus">Alfa Rodobus</option>
-                <option value="Gato Preto - Portinari">Gato Preto - Portinari</option>
-                <option value="Gato Preto - Mackenzie">Gato Preto - Mackenzie</option>
-                <option value="MobiBrasil Alvarenga">MobiBrasil Alvarenga</option>
-                <option value="MobiBrasil Jabaquara">MobiBrasil Jabaquara</option>
-                <option value="Norte Buss A1">Norte Buss A1</option>
-                <option value="Norte Buss A2">Norte Buss A2</option>
-                <option value="Sambaiba G1">Sambaiba G1</option>
-                <option value="Sambaiba G3">Sambaiba G3</option>
-                <option value="Sambaiba G4">Sambaiba G4</option>
-                <option value="Santa Brigida Mangalot">Santa Brigida Mangalot</option>
-                <option value="Santa Brigida Jaguara">Santa Brigida Jaguara</option>
-                <option value="Trans União D3">Trans União D3</option>
-                <option value="Trans União D7">Trans União D7</option>
-                <option value="UPBus">UPBus</option>
-                <option value="Via Sudeste Cursino">Via Sudeste Cursino</option>
-                <option value="Via Sudeste Sapopemba">Via Sudeste Sapopemba</option>
-                <option value="Viação Grajaú">Viação Grajaú</option>
-                <option value="Viação Metrópole AE Carvalho">Viação Metrópole AE Carvalho</option>
-                <option value="Viação Metrópole Brás">Viação Metrópole Brás</option>
-                <option value="Viação Metrópole Iguatemi">Viação Metrópole Iguatemi</option>
-                <option value="Viação Metrópole Imperador">Viação Metrópole Imperador</option>
-                <option value="Viação Metrópole Itaim">Viação Metrópole Itaim</option>
-                <option value="Viação Metrópole M'Boi Mirim">Viação Metrópole M'Boi Mirim</option>
-                <option value="Metrópole Pinedo">Metrópole Pinedo</option>
-            </select>
+      <select id="garagem" required>
+        <option value="">Selecione a Garagem</option>
+        <option value="A2 Transportes">A2 Transportes</option>
+        <option value="Alfa Rodobus">Alfa Rodobus</option>
+        <option value="Gato Preto - Portinari">Gato Preto - Portinari</option>
+        <option value="Gato Preto - Mackenzie">Gato Preto - Mackenzie</option>
+        <option value="MobiBrasil Alvarenga">MobiBrasil Alvarenga</option>
+        <option value="MobiBrasil Jabaquara">MobiBrasil Jabaquara</option>
+        <option value="Norte Buss A1">Norte Buss A1</option>
+        <option value="Norte Buss A2">Norte Buss A2</option>
+        <option value="Sambaiba G1">Sambaiba G1</option>
+        <option value="Sambaiba G3">Sambaiba G3</option>
+        <option value="Sambaiba G4">Sambaiba G4</option>
+        <option value="Santa Brigida Mangalot">Santa Brigida Mangalot</option>
+        <option value="Santa Brigida Jaguara">Santa Brigida Jaguara</option>
+        <option value="Trans União D3">Trans União D3</option>
+        <option value="Trans União D7">Trans União D7</option>
+        <option value="UPBus">UPBus</option>
+        <option value="Via Sudeste Cursino">Via Sudeste Cursino</option>
+        <option value="Via Sudeste Sapopemba">Via Sudeste Sapopemba</option>
+        <option value="Viação Grajaú">Viação Grajaú</option>
+        <option value="Viação Metrópole AE Carvalho">Viação Metrópole AE Carvalho</option>
+        <option value="Viação Metrópole Brás">Viação Metrópole Brás</option>
+        <option value="Viação Metrópole Iguatemi">Viação Metrópole Iguatemi</option>
+        <option value="Viação Metrópole Imperador">Viação Metrópole Imperador</option>
+        <option value="Viação Metrópole Itaim">Viação Metrópole Itaim</option>
+        <option value="Viação Metrópole M'Boi Mirim">Viação Metrópole M'Boi Mirim</option>
+        <option value="Metrópole Pinedo">Metrópole Pinedo</option>
+      </select>
 
-            <!-- CAMPO TEMA (ALTERADO PARA SELECT) -->
-            <select id="tema" required>
-                <option value="">Selecione o Tema</option>
-                <option value="Telemetria">Telemetria</option>
-                <option value="Software">Software</option>
-                <option value="Integração com validador">Integração com validador</option>
-                <option value="TP/TS">TP/TS</option>
-                <option value="Perca de partida">Perca de partida</option>
-                <option value="Nobreak">Nobreak</option>
-                <option value="CFTV">CFTV</option>
-                <option value="UCP NX6000">UCP NX6000</option>
-                <option value="TDM NX6010">TDM NX6010</option>
-                <option value="Falta de Equipamentos">Falta de Equipamentos</option>
-            </select>
+      <select id="tema" required>
+        <option value="">Selecione o Tema</option>
+        <option value="Telemetria">Telemetria</option>
+        <option value="Software">Software</option>
+        <option value="Integração com validador">Integração com validador</option>
+        <option value="TP/TS">TP/TS</option>
+        <option value="Perca de partida">Perca de partida</option>
+        <option value="Nobreak">Nobreak</option>
+        <option value="CFTV">CFTV</option>
+        <option value="UCP NX6000">UCP NX6000</option>
+        <option value="TDM NX6010">TDM NX6010</option>
+        <option value="Falta de Equipamentos">Falta de Equipamentos</option>
+      </select>
 
-            <textarea id="descricao" placeholder="Descrição da Reclamação" required></textarea>
-            <label for="solucao">Teve solução?</label>
-            <select id="solucao">
-                <option value="Sim">Sim</option>
-                <option value="Não">Não</option>
-            </select>
-            <button type="submit">Adicionar Ocorrência</button>
-        </form>
+      <textarea id="descricao" placeholder="Descrição da Reclamação" required></textarea>
+
+      <label for="solucao">Teve solução?</label>
+      <select id="solucao" required onchange="toggleDescricaoSolucao(this.value)">
+        <option value="">Selecione</option>
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+
+      <textarea id="descricaoSolucao" placeholder="Descreva a solução" style="display:none;"></textarea>
+
+      <button type="submit">Adicionar Ocorrência</button>
+    </form>
+  </div>
+
+  <div class="ocorrencias-container">
+    <h2>Ocorrências Registradas</h2>
+
+    <div class="filtros">
+      <select id="filtroGaragem" onchange="carregarOcorrencias()">
+        <option value="">Filtrar por Garagem</option>
+      </select>
+      <select id="filtroTema" onchange="carregarOcorrencias()">
+        <option value="">Filtrar por Tema</option>
+      </select>
     </div>
 
-    <div class="ocorrencias-container">
-        <h2>Ocorrências Registradas</h2>
-        <div id="ocorrenciasList"></div>
-    </div>
+    <div class="ocorrencias-wrapper" id="ocorrenciasList"></div>
+  </div>
 
-    <script>
-        // Função para carregar as ocorrências do localStorage
-        function carregarOcorrencias() {
-            const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
-            const ocorrenciasList = document.getElementById('ocorrenciasList');
-            ocorrenciasList.innerHTML = '';
-            ocorrencias.forEach((ocorrencia, index) => {
-                const ocorrenciaDiv = document.createElement('div');
-                ocorrenciaDiv.classList.add('ocorrencia');
-                ocorrenciaDiv.innerHTML = `
-                    <span>Cliente: ${ocorrencia.cliente}</span>
-                    <span>Data: ${ocorrencia.data}</span>
-                    <span>Garagem: ${ocorrencia.garagem}</span>
-                    <span>Tema: ${ocorrencia.tema}</span>
-                    <p>${ocorrencia.descricao}</p>
-                    <span>Solução: ${ocorrencia.solucao}</span>
-                    <button onclick="editarOcorrencia(${index})">Editar</button>
-                    <button onclick="removerOcorrencia(${index})">Remover</button>
-                `;
-                ocorrenciasList.appendChild(ocorrenciaDiv);
-            });
-        }
+  <script>
+    function toggleDescricaoSolucao(valor) {
+      document.getElementById('descricaoSolucao').style.display = valor === 'Sim' ? 'block' : 'none';
+    }
 
-        // Função para adicionar uma nova ocorrência
-        document.getElementById('ocorrenciaForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    function carregarOcorrencias() {
+      const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+      const ocorrenciasList = document.getElementById('ocorrenciasList');
+      const filtroGaragem = document.getElementById('filtroGaragem').value;
+      const filtroTema = document.getElementById('filtroTema').value;
 
-            const cliente = document.getElementById('cliente').value;
-            const data = document.getElementById('data').value;
-            const garagem = document.getElementById('garagem').value;
-            const tema = document.getElementById('tema').value;
-            const descricao = document.getElementById('descricao').value;
-            const solucao = document.getElementById('solucao').value;
+      ocorrenciasList.innerHTML = '';
 
-            const ocorrencia = {
-                cliente,
-                data,
-                garagem,
-                tema,
-                descricao,
-                solucao
-            };
+      const garagens = new Set();
+      const temas = new Set();
 
-            const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
-            ocorrencias.push(ocorrencia);
-            localStorage.setItem('ocorrencias', JSON.stringify(ocorrencias));
+      ocorrencias.forEach((ocorrencia, index) => {
+        garagens.add(ocorrencia.garagem);
+        temas.add(ocorrencia.tema);
 
-            // Limpar o formulário
-            document.getElementById('ocorrenciaForm').reset();
+        if (
+          (filtroGaragem && ocorrencia.garagem !== filtroGaragem) ||
+          (filtroTema && ocorrencia.tema !== filtroTema)
+        ) return;
 
-            carregarOcorrencias();
-        });
+        const div = document.createElement('div');
+        div.classList.add('ocorrencia');
+        div.innerHTML = `
+          <span>Cliente: ${ocorrencia.cliente}</span>
+          <span>Data: ${ocorrencia.data}</span>
+          <span>Garagem: ${ocorrencia.garagem}</span>
+          <span>Tema: ${ocorrencia.tema}</span>
+          <p>${ocorrencia.descricao}</p>
+          <span>Solução: ${ocorrencia.solucao}</span>
+          ${ocorrencia.solucao === "Sim" ? `<p><strong>Descrição da Solução:</strong> ${ocorrencia.descricaoSolucao || ''}</p>` : ''}
+          <div class="button-group">
+            <button onclick="visualizarOcorrencia(${index})">Visualizar</button>
+            <button onclick="editarOcorrencia(${index})">Editar</button>
+            <button onclick="removerOcorrencia(${index})">Remover</button>
+          </div>
+        `;
+        ocorrenciasList.appendChild(div);
+      });
 
-        // Função para remover uma ocorrência
-        function removerOcorrencia(index) {
-            const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
-            ocorrencias.splice(index, 1);
-            localStorage.setItem('ocorrencias', JSON.stringify(ocorrencias));
-            carregarOcorrencias();
-        }
+      // Atualizar os filtros com valores únicos
+      atualizarFiltros('filtroGaragem', garagens);
+      atualizarFiltros('filtroTema', temas);
+    }
 
-        // Função para editar uma ocorrência
-        function editarOcorrencia(index) {
-            const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
-            const ocorrencia = ocorrencias[index];
+    function atualizarFiltros(id, valores) {
+      const select = document.getElementById(id);
+      const valorSelecionado = select.value;
+      select.innerHTML = `<option value="">Filtrar por ${id === 'filtroGaragem' ? 'Garagem' : 'Tema'}</option>`;
+      Array.from(valores).forEach(v => {
+        const option = document.createElement('option');
+        option.value = v;
+        option.textContent = v;
+        if (v === valorSelecionado) option.selected = true;
+        select.appendChild(option);
+      });
+    }
 
-            document.getElementById('cliente').value = ocorrencia.cliente;
-            document.getElementById('data').value = ocorrencia.data;
-            document.getElementById('garagem').value = ocorrencia.garagem;
-            document.getElementById('tema').value = ocorrencia.tema;
-            document.getElementById('descricao').value = ocorrencia.descricao;
-            document.getElementById('solucao').value = ocorrencia.solucao;
+    document.getElementById('ocorrenciaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-            removerOcorrencia(index); // Remove a ocorrência antiga antes de editar
-        }
+      const cliente = document.getElementById('cliente').value;
+      const data = document.getElementById('data').value;
+      const garagem = document.getElementById('garagem').value;
+      const tema = document.getElementById('tema').value;
+      const descricao = document.getElementById('descricao').value;
+      const solucao = document.getElementById('solucao').value;
+      const descricaoSolucao = document.getElementById('descricaoSolucao').value;
 
-        // Carregar as ocorrências na inicialização
-        carregarOcorrencias();
-    </script>
+      const ocorrencia = {
+        cliente,
+        data,
+        garagem,
+        tema,
+        descricao,
+        solucao,
+        descricaoSolucao
+      };
+
+      const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+      ocorrencias.push(ocorrencia);
+      localStorage.setItem('ocorrencias', JSON.stringify(ocorrencias));
+
+      document.getElementById('ocorrenciaForm').reset();
+      toggleDescricaoSolucao("Não");
+      carregarOcorrencias();
+    });
+
+    function removerOcorrencia(index) {
+      const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+      ocorrencias.splice(index, 1);
+      localStorage.setItem('ocorrencias', JSON.stringify(ocorrencias));
+      carregarOcorrencias();
+    }
+
+    function editarOcorrencia(index) {
+      const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+      const o = ocorrencias[index];
+
+      document.getElementById('cliente').value = o.cliente;
+      document.getElementById('data').value = o.data;
+      document.getElementById('garagem').value = o.garagem;
+      document.getElementById('tema').value = o.tema;
+      document.getElementById('descricao').value = o.descricao;
+      document.getElementById('solucao').value = o.solucao;
+      document.getElementById('descricaoSolucao').value = o.descricaoSolucao || '';
+      toggleDescricaoSolucao(o.solucao);
+
+      removerOcorrencia(index); // Remove antes de editar
+    }
+
+    function visualizarOcorrencia(index) {
+      const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+      const o = ocorrencias[index];
+
+      alert(
+        `Cliente: ${o.cliente}\nData: ${o.data}\nGaragem: ${o.garagem}\nTema: ${o.tema}\nDescrição: ${o.descricao}\nSolução: ${o.solucao}\n${o.solucao === "Sim" ? "Descrição da Solução: " + (o.descricaoSolucao || "") : ""}`
+      );
+    }
+
+    carregarOcorrencias();
+  </script>
 
 </body>
 </html>
-
