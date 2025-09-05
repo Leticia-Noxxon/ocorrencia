@@ -67,10 +67,36 @@
     }
     .filtros {
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 20px;
       flex-wrap: wrap;
+      gap: 10px;
+    }
+    .filtros-left {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      max-width: 400px;
+    }
+    .filtros select {
+      width: auto;
+      padding: 6px 10px;
+      font-size: 14px;
+      min-width: 120px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    #redefinirFiltro {
+      color: #888;
+      cursor: pointer;
+      font-size: 14px;
+      user-select: none;
+    }
+    #redefinirFiltro:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -147,12 +173,15 @@
     <h2>Ocorrências Registradas</h2>
 
     <div class="filtros">
-      <select id="filtroGaragem" onchange="carregarOcorrencias()">
-        <option value="">Filtrar por Garagem</option>
-      </select>
-      <select id="filtroTema" onchange="carregarOcorrencias()">
-        <option value="">Filtrar por Tema</option>
-      </select>
+      <div class="filtros-left">
+        <select id="filtroGaragem" onchange="carregarOcorrencias()">
+          <option value="">Garagem</option>
+        </select>
+        <select id="filtroTema" onchange="carregarOcorrencias()">
+          <option value="">Tema</option>
+        </select>
+      </div>
+      <div id="redefinirFiltro" onclick="resetarFiltros()">Redefinir filtro</div>
     </div>
 
     <div class="ocorrencias-wrapper" id="ocorrenciasList"></div>
@@ -202,7 +231,6 @@
         ocorrenciasList.appendChild(div);
       });
 
-      // Atualizar os filtros com valores únicos
       atualizarFiltros('filtroGaragem', garagens);
       atualizarFiltros('filtroTema', temas);
     }
@@ -210,7 +238,7 @@
     function atualizarFiltros(id, valores) {
       const select = document.getElementById(id);
       const valorSelecionado = select.value;
-      select.innerHTML = `<option value="">Filtrar por ${id === 'filtroGaragem' ? 'Garagem' : 'Tema'}</option>`;
+      select.innerHTML = `<option value="">${id === 'filtroGaragem' ? 'Garagem' : 'Tema'}</option>`;
       Array.from(valores).forEach(v => {
         const option = document.createElement('option');
         option.value = v;
@@ -220,16 +248,27 @@
       });
     }
 
+    function resetarFiltros() {
+      document.getElementById('filtroGaragem').value = '';
+      document.getElementById('filtroTema').value = '';
+      carregarOcorrencias();
+    }
+
     document.getElementById('ocorrenciaForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const cliente = document.getElementById('cliente').value;
+      const cliente = document.getElementById('cliente').value.trim();
       const data = document.getElementById('data').value;
       const garagem = document.getElementById('garagem').value;
       const tema = document.getElementById('tema').value;
-      const descricao = document.getElementById('descricao').value;
+      const descricao = document.getElementById('descricao').value.trim();
       const solucao = document.getElementById('solucao').value;
-      const descricaoSolucao = document.getElementById('descricaoSolucao').value;
+      const descricaoSolucao = document.getElementById('descricaoSolucao').value.trim();
+
+      if (!cliente || !data || !garagem || !tema || !descricao || !solucao) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+      }
 
       const ocorrencia = {
         cliente,
@@ -238,14 +277,14 @@
         tema,
         descricao,
         solucao,
-        descricaoSolucao
+        descricaoSolucao: solucao === "Sim" ? descricaoSolucao : ""
       };
 
       const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
       ocorrencias.push(ocorrencia);
       localStorage.setItem('ocorrencias', JSON.stringify(ocorrencias));
 
-      document.getElementById('ocorrenciaForm').reset();
+      this.reset();
       toggleDescricaoSolucao("Não");
       carregarOcorrencias();
     });
@@ -267,10 +306,10 @@
       document.getElementById('tema').value = o.tema;
       document.getElementById('descricao').value = o.descricao;
       document.getElementById('solucao').value = o.solucao;
-      document.getElementById('descricaoSolucao').value = o.descricaoSolucao || '';
       toggleDescricaoSolucao(o.solucao);
+      document.getElementById('descricaoSolucao').value = o.descricaoSolucao || '';
 
-      removerOcorrencia(index); // Remove antes de editar
+      removerOcorrencia(index); // remove para atualizar depois do submit
     }
 
     function visualizarOcorrencia(index) {
@@ -282,8 +321,10 @@
       );
     }
 
+    // Carrega ao abrir a página
     carregarOcorrencias();
   </script>
 
 </body>
 </html>
+
