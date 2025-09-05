@@ -77,14 +77,12 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      flex-grow: 1;
-      max-width: 400px;
     }
     .filtros select {
       width: auto;
       padding: 6px 10px;
       font-size: 14px;
-      min-width: 120px;
+      min-width: 180px;
       border-radius: 5px;
       border: 1px solid #ccc;
       cursor: pointer;
@@ -112,46 +110,46 @@
 
       <select id="garagem" required>
         <option value="">Selecione a Garagem</option>
-        <option value="A2 Transportes">A2 Transportes</option>
-        <option value="Alfa Rodobus">Alfa Rodobus</option>
-        <option value="Gato Preto - Portinari">Gato Preto - Portinari</option>
-        <option value="Gato Preto - Mackenzie">Gato Preto - Mackenzie</option>
-        <option value="MobiBrasil Alvarenga">MobiBrasil Alvarenga</option>
-        <option value="MobiBrasil Jabaquara">MobiBrasil Jabaquara</option>
-        <option value="Norte Buss A1">Norte Buss A1</option>
-        <option value="Norte Buss A2">Norte Buss A2</option>
-        <option value="Sambaiba G1">Sambaiba G1</option>
-        <option value="Sambaiba G3">Sambaiba G3</option>
-        <option value="Sambaiba G4">Sambaiba G4</option>
-        <option value="Santa Brigida Mangalot">Santa Brigida Mangalot</option>
-        <option value="Santa Brigida Jaguara">Santa Brigida Jaguara</option>
-        <option value="Trans União D3">Trans União D3</option>
-        <option value="Trans União D7">Trans União D7</option>
-        <option value="UPBus">UPBus</option>
-        <option value="Via Sudeste Cursino">Via Sudeste Cursino</option>
-        <option value="Via Sudeste Sapopemba">Via Sudeste Sapopemba</option>
-        <option value="Viação Grajaú">Viação Grajaú</option>
-        <option value="Viação Metrópole AE Carvalho">Viação Metrópole AE Carvalho</option>
-        <option value="Viação Metrópole Brás">Viação Metrópole Brás</option>
-        <option value="Viação Metrópole Iguatemi">Viação Metrópole Iguatemi</option>
-        <option value="Viação Metrópole Imperador">Viação Metrópole Imperador</option>
-        <option value="Viação Metrópole Itaim">Viação Metrópole Itaim</option>
-        <option value="Viação Metrópole M'Boi Mirim">Viação Metrópole M'Boi Mirim</option>
-        <option value="Metrópole Pinedo">Metrópole Pinedo</option>
+        <!-- Lista completa de garagens -->
+        <option>A2 Transportes</option>
+        <option>Alfa Rodobus</option>
+        <option>Gato Preto - Portinari</option>
+        <option>Gato Preto - Mackenzie</option>
+        <option>MobiBrasil Alvarenga</option>
+        <option>MobiBrasil Jabaquara</option>
+        <option>Norte Buss A1</option>
+        <option>Norte Buss A2</option>
+        <option>Sambaiba G1</option>
+        <option>Sambaiba G3</option>
+        <option>Sambaiba G4</option>
+        <option>Santa Brigida Mangalot</option>
+        <option>Santa Brigida Jaguara</option>
+        <option>Trans União D3</option>
+        <option>Trans União D7</option>
+        <option>UPBus</option>
+        <option>Via Sudeste Cursino</option>
+        <option>Via Sudeste Sapopemba</option>
+        <option>Viação Grajaú</option>
+        <option>Viação Metrópole AE Carvalho</option>
+        <option>Viação Metrópole Brás</option>
+        <option>Viação Metrópole Iguatemi</option>
+        <option>Viação Metrópole Imperador</option>
+        <option>Viação Metrópole Itaim</option>
+        <option>Viação Metrópole M'Boi Mirim</option>
+        <option>Metrópole Pinedo</option>
       </select>
 
       <select id="tema" required>
         <option value="">Selecione o Tema</option>
-        <option value="Telemetria">Telemetria</option>
-        <option value="Software">Software</option>
-        <option value="Integração com validador">Integração com validador</option>
-        <option value="TP/TS">TP/TS</option>
-        <option value="Perca de partida">Perca de partida</option>
-        <option value="Nobreak">Nobreak</option>
-        <option value="CFTV">CFTV</option>
-        <option value="UCP NX6000">UCP NX6000</option>
-        <option value="TDM NX6010">TDM NX6010</option>
-        <option value="Falta de Equipamentos">Falta de Equipamentos</option>
+        <option>Telemetria</option>
+        <option>Software</option>
+        <option>Integração com Validador</option>
+        <option>TP/TS</option>
+        <option>Perca de Partida</option>
+        <option>CFTV</option>
+        <option>UCP NX6000</option>
+        <option>TDM NX6010</option>
+        <option>Falta de Equipamentos</option>
       </select>
 
       <textarea id="descricao" placeholder="Descrição da Reclamação" required></textarea>
@@ -176,15 +174,52 @@
       <div class="filtros-left">
         <select id="filtroGaragem" onchange="carregarOcorrencias()">
           <option value="">Garagem</option>
+          <!-- Mesmas opções fixas da garagem -->
+          <option>A2 Transportes</option>
+          <option>Alfa Rodobus</option>
+          <option>Gato Preto - Portinari</option>
+          <option>Gato Preto - Mackenzie</option>
+          <option>MobiBrasil Alvarenga</option>
+          <option>MobiBrasil Jabaquara</option>
+          <option>Norte Buss A1</option>
+          <option>Norte Buss A2</option>
+          <option>Sambaiba G1</option>
+          <option>Sambaiba G3</option>
+          <option>Sambaiba G4</option>
+          <option>Santa Brigida Mangalot</option>
+          <option>Santa Brigida Jaguara</option>
+          <option>Trans União D3</option>
+          <option>Trans União D7</option>
+          <option>UPBus</option>
+          <option>Via Sudeste Cursino</option>
+          <option>Via Sudeste Sapopemba</option>
+          <option>Viação Grajaú</option>
+          <option>Viação Metrópole AE Carvalho</option>
+          <option>Viação Metrópole Brás</option>
+          <option>Viação Metrópole Iguatemi</option>
+          <option>Viação Metrópole Imperador</option>
+          <option>Viação Metrópole Itaim</option>
+          <option>Viação Metrópole M'Boi Mirim</option>
+          <option>Metrópole Pinedo</option>
         </select>
+
         <select id="filtroTema" onchange="carregarOcorrencias()">
           <option value="">Tema</option>
+          <option>Telemetria</option>
+          <option>Software</option>
+          <option>Integração com Validador</option>
+          <option>TP/TS</option>
+          <option>Perca de Partida</option>
+          <option>CFTV</option>
+          <option>UCP NX6000</option>
+          <option>TDM NX6010</option>
+          <option>Falta de Equipamentos</option>
         </select>
       </div>
       <div id="redefinirFiltro" onclick="resetarFiltros()">Redefinir filtro</div>
     </div>
 
-    <div class="ocorrencias-wrapper" id="ocorrenciasList"></div>
+    <div id="ocorrenciasList" class="ocorrencias-wrapper"></div>
   </div>
 
   <script>
@@ -193,25 +228,18 @@
     }
 
     function carregarOcorrencias() {
-      const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
-      const ocorrenciasList = document.getElementById('ocorrenciasList');
       const filtroGaragem = document.getElementById('filtroGaragem').value;
       const filtroTema = document.getElementById('filtroTema').value;
-
+      const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
+      const ocorrenciasList = document.getElementById('ocorrenciasList');
       ocorrenciasList.innerHTML = '';
 
-      const garagens = new Set();
-      const temas = new Set();
+      const filtradas = ocorrencias.filter(o => {
+        return (!filtroGaragem || o.garagem === filtroGaragem) &&
+               (!filtroTema || o.tema === filtroTema);
+      });
 
-      ocorrencias.forEach((ocorrencia, index) => {
-        garagens.add(ocorrencia.garagem);
-        temas.add(ocorrencia.tema);
-
-        if (
-          (filtroGaragem && ocorrencia.garagem !== filtroGaragem) ||
-          (filtroTema && ocorrencia.tema !== filtroTema)
-        ) return;
-
+      filtradas.forEach((ocorrencia, index) => {
         const div = document.createElement('div');
         div.classList.add('ocorrencia');
         div.innerHTML = `
@@ -221,7 +249,7 @@
           <span>Tema: ${ocorrencia.tema}</span>
           <p>${ocorrencia.descricao}</p>
           <span>Solução: ${ocorrencia.solucao}</span>
-          ${ocorrencia.solucao === "Sim" ? `<p><strong>Descrição da Solução:</strong> ${ocorrencia.descricaoSolucao || ''}</p>` : ''}
+          ${ocorrencia.solucao === "Sim" ? `<p><strong>Descrição da Solução:</strong> ${ocorrencia.descricaoSolucao || ""}</p>` : ""}
           <div class="button-group">
             <button onclick="visualizarOcorrencia(${index})">Visualizar</button>
             <button onclick="editarOcorrencia(${index})">Editar</button>
@@ -229,22 +257,6 @@
           </div>
         `;
         ocorrenciasList.appendChild(div);
-      });
-
-      atualizarFiltros('filtroGaragem', garagens);
-      atualizarFiltros('filtroTema', temas);
-    }
-
-    function atualizarFiltros(id, valores) {
-      const select = document.getElementById(id);
-      const valorSelecionado = select.value;
-      select.innerHTML = `<option value="">${id === 'filtroGaragem' ? 'Garagem' : 'Tema'}</option>`;
-      Array.from(valores).forEach(v => {
-        const option = document.createElement('option');
-        option.value = v;
-        option.textContent = v;
-        if (v === valorSelecionado) option.selected = true;
-        select.appendChild(option);
       });
     }
 
@@ -257,28 +269,15 @@
     document.getElementById('ocorrenciaForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const cliente = document.getElementById('cliente').value.trim();
+      const cliente = document.getElementById('cliente').value;
       const data = document.getElementById('data').value;
       const garagem = document.getElementById('garagem').value;
       const tema = document.getElementById('tema').value;
-      const descricao = document.getElementById('descricao').value.trim();
+      const descricao = document.getElementById('descricao').value;
       const solucao = document.getElementById('solucao').value;
-      const descricaoSolucao = document.getElementById('descricaoSolucao').value.trim();
+      const descricaoSolucao = document.getElementById('descricaoSolucao').value;
 
-      if (!cliente || !data || !garagem || !tema || !descricao || !solucao) {
-        alert('Por favor, preencha todos os campos obrigatórios.');
-        return;
-      }
-
-      const ocorrencia = {
-        cliente,
-        data,
-        garagem,
-        tema,
-        descricao,
-        solucao,
-        descricaoSolucao: solucao === "Sim" ? descricaoSolucao : ""
-      };
+      const ocorrencia = { cliente, data, garagem, tema, descricao, solucao, descricaoSolucao: solucao === "Sim" ? descricaoSolucao : "" };
 
       const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
       ocorrencias.push(ocorrencia);
@@ -299,7 +298,6 @@
     function editarOcorrencia(index) {
       const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
       const o = ocorrencias[index];
-
       document.getElementById('cliente').value = o.cliente;
       document.getElementById('data').value = o.data;
       document.getElementById('garagem').value = o.garagem;
@@ -308,23 +306,19 @@
       document.getElementById('solucao').value = o.solucao;
       toggleDescricaoSolucao(o.solucao);
       document.getElementById('descricaoSolucao').value = o.descricaoSolucao || '';
-
-      removerOcorrencia(index); // remove para atualizar depois do submit
+      removerOcorrencia(index);
     }
 
     function visualizarOcorrencia(index) {
       const ocorrencias = JSON.parse(localStorage.getItem('ocorrencias')) || [];
       const o = ocorrencias[index];
-
-      alert(
-        `Cliente: ${o.cliente}\nData: ${o.data}\nGaragem: ${o.garagem}\nTema: ${o.tema}\nDescrição: ${o.descricao}\nSolução: ${o.solucao}\n${o.solucao === "Sim" ? "Descrição da Solução: " + (o.descricaoSolucao || "") : ""}`
-      );
+      alert(`Cliente: ${o.cliente}\nData: ${o.data}\nGaragem: ${o.garagem}\nTema: ${o.tema}\nDescrição: ${o.descricao}\nSolução: ${o.solucao}\n${o.solucao === "Sim" ? "Descrição da Solução: " + (o.descricaoSolucao || "") : ""}`);
     }
 
-    // Carrega ao abrir a página
     carregarOcorrencias();
   </script>
 
 </body>
 </html>
+
 
